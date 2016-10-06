@@ -9,7 +9,8 @@
     "web-component",
     "polymer",
     "braintree",
-    "payment"
+    "payment",
+    "web-components"
   ],
   "main": "braintree-drop-in.html",
   "license": "http://polymer.github.io/LICENSE.txt",
