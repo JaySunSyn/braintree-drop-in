@@ -1,0 +1,123 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="import-braintree.html">
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <braintree-drop-in client-token="abc"></braintree-drop-in>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="braintree-drop-in">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+      #iframe {
+        display: none;
+      }
+
+    </style>
+
+    <form id="checkout" method="post" action="#" target="form_sending">
+      <div id="paymentForm"></div>
+    </form>
+    <iframe id="iframe" name="form_sending"></iframe>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'braintree-drop-in',
+
+      properties: {
+
+        clientToken: {
+          type: String,
+          value: '',
+          notify: true,
+        },
+
+        /**
+         * `isVisible` indicates that this element is visible.
+         * braintree.setup can only be called if this element is visible.
+         * Make sure, that isVisible is only true if e.g. this is the active page of iron-pages
+         */
+        isVisible: {
+          type: Boolean,
+          value: true,
+          notify: true,
+        },
+
+        _integration: Object
+      },
+
+      observers: [
+        '_clientTokenChanged(clientToken,isVisible)'
+      ],
+
+      _clientTokenChanged: function(clientToken, isVisible) {
+        this.async(function() {
+          if (clientToken && clientToken !== '' && isVisible) {
+            this._setup(clientToken, this._integration)
+          }
+        })
+      },
+
+      _setup: function(clientToken, integration) {
+        var self = this
+        if (integration && integration.teardown) {
+          integration.teardown(function () {
+            self.braintreeInstance = null;
+            // braintree.setup can safely be run again!
+            self._setupBraintree(clientToken);
+          });
+        } else {
+          this._setupBraintree(clientToken);
+        }
+      },
+
+      _setupBraintree: function(clientToken) {
+        var self = this
+        var form = this.$.paymentForm
+
+        braintree.setup(clientToken, 'dropin', {
+
+          container: form,
+
+          onReady: function(integration) {
+            self._integration = integration;
+            self.fire('setup-ready')
+          },
+
+          onError: function(err) {
+            self.fire('error', err)
+          },
+
+          onLoad: function(){
+            self.fire('load')
+          },
+          onPaymentMethodReceived: function(payload) {
+            self.fire('payment-method-received', payload)
+          }
+        });
+      },
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,38 @@
+{
+  "name": "braintree-drop-in",
+  "authors": [
+    "Jalal Fathi <jfathi.mail@gmail.com>"
+  ],
+  "description": "An element to display a braintree dropin form.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "braintree",
+    "payment"
+  ],
+  "main": "braintree-drop-in.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/JaySunSyn/braintree-drop-in/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "braintree-web": "2.29.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "a7dbf40735",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a7dbf40735a360fb94081a7c92ebe5397ade033d"
+  },
+  "_source": "https://github.com/JaySunSyn/braintree-drop-in.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/JaySunSyn/braintree-drop-in.git",
+  "_direct": true
+}
