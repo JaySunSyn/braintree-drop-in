@@ -80,7 +80,6 @@ Example:
           integration.teardown(function () {
             self.braintreeInstance = null;
             // braintree.setup can safely be run again!
-            console.log('braintree teardown success')
             self._setupBraintree(clientToken);
           });
         } else {
