@@ -53,6 +53,11 @@ Example:
           notify: true,
         },
 
+        /**
+         * `isVisible` indicates that this element is visible.
+         * braintree.setup can only be called if this element is visible.
+         * Make sure, that isVisible is only true if e.g. this is the active page of iron-pages
+         */
         isVisible: {
           type: Boolean,
           value: true,
