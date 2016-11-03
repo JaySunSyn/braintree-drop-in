@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="import-braintree.html">
 <!--
 An element providing a solution to no problem in particular.
 
@@ -40,7 +39,7 @@ Example:
     </form>
     <iframe id="iframe" name="form_sending"></iframe>
   </template>
-
+  <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
   <script>
     Polymer({
       is: 'braintree-drop-in',

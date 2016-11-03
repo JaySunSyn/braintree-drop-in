@@ -1,6 +1,6 @@
 {
   "name": "braintree-drop-in",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     "Jalal Fathi <jfathi.mail@gmail.com>"
   ],
@@ -20,8 +20,7 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0",
-    "braintree-web": "2.29.0"
+    "polymer": "Polymer/polymer#^1.2.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
